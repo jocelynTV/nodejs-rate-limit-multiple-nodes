@@ -1,7 +1,7 @@
 import express from 'express';
 import rateLimit from 'express-rate-limit';
-import RedisStore from "rate-limit-redis";
-import { createClient } from "redis";
+import RedisStore from 'rate-limit-redis';
+import { createClient } from 'redis';
 
 const app = express();
 
@@ -13,11 +13,11 @@ const client = createClient({
 client.connect();
 
 const limiter = rateLimit({
-	windowMs: 1 * 60 * 1000, // 1 minutes
-	max: 2, // Limit each IP to 2 requests per `window` (here, per 1 minutes)
-	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
-	// Redis store configuration
+  windowMs: 1 * 60 * 1000, // 1 minutes
+  max: 2, // Limit each IP to 2 requests per `window` (here, per 1 minutes)
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+  // Redis store configuration
   store: new RedisStore({
     sendCommand: (...args: string[]) => client.sendCommand(args),
   }),
