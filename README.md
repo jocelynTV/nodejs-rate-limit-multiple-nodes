@@ -1,23 +1,16 @@
-# Rate limit với cluster mode
+# Rate limit with cluster mode
 
-Cách tích hợp và sử dụng rate limit cùng với Node.js sử dụng pm2 với nhiều cluster.
+## Requires
 
-## Yêu cầu
+- Node.js >=16
+- Typescript
+- Yarn
+- PM2
 
-- Node.js 16 hoặc cao hơn, Typescript, Yarn, PM2
-
-## Cách sử dụng
-
-Thực hiện các lệnh bên dưới:
+## Usage
 
 ```bash
 yarn install
-```
-
-```bash
 yarn build
-```
-
-```bash
 pm2 start dist/index.js -i max
 ```
